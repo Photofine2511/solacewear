@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* #004225 = hsl(158, 100%, 13%) */
+    --background: 0 0% 100%; /* white */
+    --foreground: 158 100% 13%; /* dark green */
+
+    --card: 0 0% 100%;
+    --card-foreground: 158 100% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 158 100% 13%;
+
+    --primary: 158 100% 13%; /* dark green */
+    --primary-foreground: 0 0% 100%; /* white */
+
+    --secondary: 158 30% 40%; /* lighter green */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 158 30% 90%;
+    --muted-foreground: 158 30% 40%;
+
+    --accent: 158 100% 13%; /* dark green */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 158 30% 85%;
+    --input: 158 30% 85%;
+    --ring: 158 100% 13%;
+
+    /* Custom design tokens for e-commerce */
+    --hero-gradient: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(158 30% 90%) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(158 100% 13% / 0.1);
+    --card-shadow-hover: 0 8px 30px -4px hsl(158 100% 13% / 0.15);
+    --accent-glow: 0 0 20px hsl(158 100% 13% / 0.3);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 158 100% 13%;
+    --sidebar-primary: 158 100% 13%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 158 30% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 158 30% 85%;
+    --sidebar-ring: 158 100% 13%;
+  }
+
+  .dark {
+    --background: 158 100% 13%; /* dark green */
+    --foreground: 0 0% 100%; /* white */
+
+    --card: 158 100% 13%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 158 100% 13%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%; /* white */
+    --primary-foreground: 158 100% 13%; /* dark green */
+
+    --secondary: 158 30% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 158 30% 40%;
+    --muted-foreground: 0 0% 100%;
+
+    --accent: 0 0% 100%;
+    --accent-foreground: 158 100% 13%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 158 30% 40%;
+    --input: 158 30% 40%;
+    --ring: 0 0% 100%;
+    --sidebar-background: 158 100% 13%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 158 100% 13%;
+    --sidebar-accent: 158 30% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 158 30% 40%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
