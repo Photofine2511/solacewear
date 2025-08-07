@@ -28,6 +28,7 @@ export const products: Product[] = [
     image: productTshirt,
     category: "T-Shirts",
     description: "A timeless white t-shirt made from premium organic cotton. Soft, comfortable, and perfect for everyday wear.",
+    sale: true,
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ export const products: Product[] = [
     image: productHoodie,
     category: "Hoodies",
     description: "Ultra-soft fleece hoodie with a relaxed fit. Features a kangaroo pocket and adjustable drawstring hood.",
+    sale: false,
   },
   {
     id: 3,
@@ -44,6 +46,7 @@ export const products: Product[] = [
     image: productJeans,
     category: "Jeans",
     description: "Classic straight-leg jeans crafted from premium denim. Comfortable stretch fit with timeless styling.",
+    sale: true,
   },
   {
     id: 4,
@@ -52,6 +55,7 @@ export const products: Product[] = [
     image: productSneakers,
     category: "Footwear",
     description: "Clean, minimalist sneakers with premium leather construction. Versatile design perfect for any occasion.",
+    sale: false,
   },
   {
     id: 5,
@@ -60,6 +64,7 @@ export const products: Product[] = [
     image: productJacket,
     category: "Outerwear",
     description: "Lightweight field jacket in olive green. Features multiple pockets and a water-resistant finish.",
+    sale: true,
   },
   {
     id: 6,
@@ -68,6 +73,7 @@ export const products: Product[] = [
     image: productSweater,
     category: "Sweaters",
     description: "Soft merino wool blend sweater with a relaxed fit. Perfect for layering or wearing on its own.",
+    sale: false,
   },
   {
     id: 7,
@@ -76,6 +82,7 @@ export const products: Product[] = [
     image: productChinos,
     category: "Pants",
     description: "Modern slim fit chinos made from soft cotton twill. Ideal for both casual and smart looks.",
+    sale: true,
   },
   {
     id: 8,
@@ -84,6 +91,7 @@ export const products: Product[] = [
     image: productToteBag,
     category: "Accessories",
     description: "Durable canvas tote bag with reinforced handles. Great for shopping, beach days, or everyday errands.",
+    sale: false,
   },
   {
     id: 9,
@@ -92,6 +100,7 @@ export const products: Product[] = [
     image: productCap,
     category: "Accessories",
     description: "Adjustable cotton baseball cap with embroidered logo. Available in multiple colors.",
+    sale: true,
   },
   {
     id: 10,
@@ -100,6 +109,7 @@ export const products: Product[] = [
     image: productStripedTee,
     category: "T-Shirts",
     description: "Lightweight long sleeve tee with classic horizontal stripes. Ideal for layering or standalone wear.",
+    sale: false,
   },
   {
     id: 11,
@@ -108,6 +118,7 @@ export const products: Product[] = [
     image: productBikerJacket,
     category: "Outerwear",
     description: "Edgy faux leather biker jacket with asymmetrical zipper and moto detailing.",
+    sale: true,
   },
   {
     id: 12,
@@ -116,6 +127,7 @@ export const products: Product[] = [
     image: productBeanie,
     category: "Accessories",
     description: "Cozy ribbed beanie with fold-over cuff. Keeps you warm in style.",
+    sale: false,
   },
   {
     id: 13,
@@ -124,6 +136,7 @@ export const products: Product[] = [
     image: productJoggers,
     category: "Pants",
     description: "Tapered joggers with drawstring waist and zippered pockets. Great for workouts or lounging.",
+    sale: true,
   },
   {
     id: 14,
@@ -132,6 +145,7 @@ export const products: Product[] = [
     image: productCrewneck,
     category: "Sweaters",
     description: "Classic crewneck sweatshirt in a relaxed fit. Made from mid-weight French terry fabric.",
+    sale: false,
   },
   {
     id: 15,
@@ -140,6 +154,7 @@ export const products: Product[] = [
     image: productGraphicTee,
     category: "T-Shirts",
     description: "Oversized t-shirt with vintage-inspired graphic print. Soft and breathable cotton fabric.",
+    sale: true,
   },
   {
     id: 16,
@@ -148,6 +163,7 @@ export const products: Product[] = [
     image: productRunningShorts,
     category: "Shorts",
     description: "Lightweight shorts with inner lining and moisture-wicking technology. Designed for runners.",
+    sale: false,
   },
   {
     id: 17,
@@ -156,6 +172,7 @@ export const products: Product[] = [
     image: productOvercoat,
     category: "Outerwear",
     description: "Timeless wool overcoat with structured shoulders and button front. Perfect for formal winter wear.",
+    sale: true,
   },
   {
     id: 18,
@@ -164,5 +181,6 @@ export const products: Product[] = [
     image: productTankTop,
     category: "T-Shirts",
     description: "Fitted ribbed tank top made from stretch cotton. A staple layering piece.",
+    sale: false,
   }, 
 ];

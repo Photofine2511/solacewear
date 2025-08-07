@@ -22,12 +22,22 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           alt={product.name}
           className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
         />
+        {/* Category marker (top-left) */}
         <Badge 
           variant="secondary" 
-          className="absolute top-3 left-3 bg-background/80 backdrop-blur-sm"
+          className="absolute top-3 left-3 bg-background/90 backdrop-blur-sm text-primary font-bold text-sm px-4 py-1 rounded-lg shadow-lg border border-primary/30 z-10"
         >
           {product.category}
         </Badge>
+        {/* Sale badge (top-right) */}
+        {product.sale && (
+          <Badge 
+            variant="destructive" 
+            className="absolute top-3 right-3 bg-red-600 text-white font-bold text-xs px-3 py-1 rounded-lg shadow-lg z-10"
+          >
+            Sale
+          </Badge>
+        )}
       </div>
       
       <CardContent className="p-4">

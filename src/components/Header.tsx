@@ -1,9 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ShoppingCart, Menu, X, User, Heart, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import SiteLogo from "@/assets/site-logo.png";
+import { products } from "@/data/products";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { SearchDrawer } from "@/components/SearchDrawer";
 
 interface HeaderProps {
   cartItemsCount: number;
@@ -12,7 +16,9 @@ interface HeaderProps {
 
 export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navigation = [
     { name: "Shop", href: "/shop" },
@@ -27,8 +33,8 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-primary hover:text-accent transition-colors">
-              Solacewear
+            <Link to="/" className="flex items-center gap-2">
+              <img src={SiteLogo} alt="Solacewear Logo" className="h-24 w-auto" />
             </Link>
           </div>
 
@@ -51,6 +57,19 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
 
           {/* Cart and Mobile Menu */}
           <div className="flex items-center space-x-4">
+            {/* Search Icon & Drawer */}
+            <Button variant="ghost" size="sm" className="relative" onClick={() => setIsSearchOpen(true)}>
+              <Search className="h-5 w-5" />
+            </Button>
+            <SearchDrawer isOpen={isSearchOpen} onOpenChange={setIsSearchOpen} />
+            {/* User Icon */}
+            <Button variant="ghost" size="sm" className="relative">
+              <User className="h-5 w-5" />
+            </Button>
+            {/* Heart Icon (Wishlist) */}
+            <Button variant="ghost" size="sm" className="relative">
+              <Heart className="h-5 w-5" />
+            </Button>
             <Button
               variant="ghost"
               size="sm"
