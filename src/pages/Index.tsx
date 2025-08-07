@@ -120,11 +120,15 @@ const Index = () => {
       <section className="relative w-full py-4 md:py-6 mx-auto">
         <Carousel>
           <CarouselContent>
-            {[1, 2, 3, 4].map((slide) => (
-              <CarouselItem key={slide}>
+            {[
+              "https://i.ibb.co/0ygMfxLW/hero1.png",
+              "https://i.ibb.co/fY00HB4h/hero2.png",
+              "https://i.ibb.co/zWdqdp1C/hero3.png",
+              "https://i.ibb.co/Mk7VNjDd/hero4.png"
+            ].map((imgUrl, idx) => (
+              <CarouselItem key={idx}>
                 <div className="h-[200px] xs:h-[250px] sm:h-[300px] md:h-[450px] flex items-center justify-center bg-gradient-to-br from-primary/80 to-accent/80 rounded-xl shadow-lg text-center p-2 xs:p-4 md:p-8 relative overflow-hidden w-full">
-                  {/* Show only the image for each slide */}
-                  <img src={`/src/assets/hero/hero${slide}.png`} alt={`Hero Slide ${slide}`} className="absolute inset-0 w-full h-full object-cover" />
+                  <img src={imgUrl} alt={`Hero Slide ${idx + 1}`} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               </CarouselItem>
             ))}
@@ -261,7 +265,7 @@ const Index = () => {
 
         {/* Promotional Banner Section */}
         <section className="w-full px-2 py-8 xs:px-4 sm:px-6 lg:px-8">
-          <img src="/src/assets/banner-img.png" alt="Promotional Banner" className="w-full h-auto object-cover rounded-xl" />
+          <img src="https://i.ibb.co/Xf5MqPk7/banner-img.png" alt="Promotional Banner" className="w-full h-auto object-cover rounded-xl" />
         </section>
       </main>
       
