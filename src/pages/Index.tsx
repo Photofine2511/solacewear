@@ -40,6 +40,55 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const topCategories = getTopCategories(products, 6);
 
+  // Brands slider pause on hover functionality
+  useEffect(() => {
+    const sliderContainer = document.getElementById('brands-slider-container');
+    const slider = document.getElementById('brands-slider');
+
+    if (sliderContainer && slider) {
+      const handleMouseEnter = () => {
+        slider.classList.add('paused');
+      };
+
+      const handleMouseLeave = () => {
+        slider.classList.remove('paused');
+      };
+
+      sliderContainer.addEventListener('mouseenter', handleMouseEnter);
+      sliderContainer.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        sliderContainer.removeEventListener('mouseenter', handleMouseEnter);
+        sliderContainer.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    }
+  }, []);
+
+  // Intersection Observer for fade-in animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const brandsSection = document.querySelector('.brands-section');
+    if (brandsSection) {
+      observer.observe(brandsSection);
+    }
+
+    return () => {
+      if (brandsSection) {
+        observer.unobserve(brandsSection);
+      }
+    };
+  }, []);
+
   const addToCart = (product: Product) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
@@ -116,52 +165,153 @@ const Index = () => {
         onCartOpen={() => setIsCartOpen(true)} 
       />
 
-      {/* Hero Carousel Section */}
+      {/* Hero Two-Column Section */}
       <section className="relative w-full py-4 md:py-6 mx-auto">
-        <Carousel>
-          <CarouselContent>
-            {[
-              "https://i.ibb.co/0ygMfxLW/hero1.png",
-              "https://i.ibb.co/fY00HB4h/hero2.png",
-              "https://i.ibb.co/zWdqdp1C/hero3.png",
-              "https://i.ibb.co/Mk7VNjDd/hero4.png"
-            ].map((imgUrl, idx) => (
-              <CarouselItem key={idx}>
-                <div className="h-[200px] xs:h-[250px] sm:h-[300px] md:h-[450px] flex items-center justify-center bg-gradient-to-br from-primary/80 to-accent/80 rounded-xl shadow-lg text-center p-2 xs:p-4 md:p-8 relative overflow-hidden w-full">
-                  <img src={imgUrl} alt={`Hero Slide ${idx + 1}`} className="absolute inset-0 w-full h-full object-cover" />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            {/* Ready to SHIP Panel */}
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
+              <img 
+                src="/src/assets/hero/1.png" 
+                alt="Ready to Ship" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                  Ready to SHIP
+                </h2>
+                <Button 
+                  className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  onClick={() => navigate("/shop")}
+                >
+                  Shop Now
+                </Button>
+              </div>
+            </div>
+
+            {/* Ready to CUSTOMISE Panel */}
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
+              <img 
+                src="/src/assets/hero/2.png" 
+                alt="Ready to Customise" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 flex flex-col items-end justify-center p-8 text-white">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight text-right">
+                  Ready to CUSTOMISE
+                </h2>
+                <Button 
+                  className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  onClick={() => navigate("/collections")}
+                >
+                  Customise Now
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Brand Slider Section */}
-      <section className="w-full py-6 sm:py-8 bg-muted overflow-hidden">
-        <div className="container mx-auto px-2 sm:px-4">
-          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-4 sm:mb-8 text-center">Brand's We Work With!</h2>
-          <div className="relative">
-            <div className="flex items-center gap-8 xs:gap-12 sm:gap-16 md:gap-24 animate-brand-slider whitespace-nowrap" style={{ animation: 'brandSlider 18s linear infinite' }}>
+      <section className="w-full py-12 sm:py-16 bg-gradient-to-br from-white via-gray-50 to-gray-100 overflow-hidden relative brands-section opacity-0">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
+              Brands We Work With
+            </h2>
+            {/* Subtle gradient underline */}
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-yellow-500 mx-auto rounded-full"></div>
+          </div>
+          
+          {/* Brands Slider */}
+          <div className="relative group" id="brands-slider-container">
+            <div 
+              className="flex items-center gap-12 sm:gap-16 md:gap-20 lg:gap-24 animate-brand-slider whitespace-nowrap"
+              style={{ animation: 'brandSlider 25s linear infinite' }}
+              id="brands-slider"
+            >
               {brandLogos.map((brand, idx) => (
-                <div key={brand.name + idx} className="flex-shrink-0 flex flex-col items-center mx-2 xs:mx-4 sm:mx-8">
-                  <img src={brand.img} alt={brand.name} className="h-10 xs:h-12 sm:h-16 w-auto object-contain mb-1 xs:mb-2" />
-                  <span className="text-xs xs:text-sm font-semibold text-muted-foreground">{brand.name}</span>
+                <div 
+                  key={brand.name + idx} 
+                  className="flex-shrink-0 flex flex-col items-center mx-4 sm:mx-6 md:mx-8 group/brand"
+                >
+                  <div className="relative p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group-hover/brand:shadow-xl border border-gray-100">
+                    <img 
+                      src={brand.img} 
+                      alt={brand.name} 
+                      className="h-12 sm:h-16 md:h-20 w-auto object-contain filter grayscale group-hover/brand:grayscale-0 transition-all duration-300" 
+                    />
+                  </div>
+                  <span className="text-xs sm:text-sm font-medium text-muted-foreground mt-2 group-hover/brand:text-primary transition-colors duration-300">
+                    {brand.name}
+                  </span>
                 </div>
               ))}
-              {/* Large spacer to prevent duplicate logos from appearing at the same time */}
-              <div style={{ width: '100px', display: 'inline-block' }}></div>
+              {/* Duplicate logos for seamless loop */}
               {brandLogos.map((brand, idx) => (
-                <div key={brand.name + 'repeat' + idx} className="flex-shrink-0 flex flex-col items-center mx-2 xs:mx-4 sm:mx-8">
-                  <img src={brand.img} alt={brand.name} className="h-10 xs:h-12 sm:h-16 w-auto object-contain mb-1 xs:mb-2" />
-                  <span className="text-xs xs:text-sm font-semibold text-muted-foreground">{brand.name}</span>
+                <div 
+                  key={brand.name + 'repeat' + idx} 
+                  className="flex-shrink-0 flex flex-col items-center mx-4 sm:mx-6 md:mx-8 group/brand"
+                >
+                  <div className="relative p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group-hover/brand:shadow-xl border border-gray-100">
+                    <img 
+                      src={brand.img} 
+                      alt={brand.name} 
+                      className="h-12 sm:h-16 md:h-20 w-auto object-contain filter grayscale group-hover/brand:grayscale-0 transition-all duration-300" 
+                    />
+                  </div>
+                  <span className="text-xs sm:text-sm font-medium text-muted-foreground mt-2 group-hover/brand:text-primary transition-colors duration-300">
+                    {brand.name}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
+          
+          {/* Custom CSS for animations */}
           <style>{`
             @keyframes brandSlider {
               0% { transform: translateX(0); }
               100% { transform: translateX(-50%); }
+            }
+            
+            @keyframes fadeInUp {
+              from {
+                opacity: 0;
+                transform: translateY(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            .animate-brand-slider {
+              animation: brandSlider 25s linear infinite;
+            }
+            
+            .animate-brand-slider.paused {
+              animation-play-state: paused;
+            }
+            
+            .brands-section.animate-fade-in {
+              opacity: 1;
+              animation: fadeInUp 0.8s ease-out;
+            }
+            
+            @media (max-width: 768px) {
+              .animate-brand-slider {
+                animation-duration: 20s;
+              }
+            }
+            
+            @media (max-width: 480px) {
+              .animate-brand-slider {
+                animation-duration: 15s;
+              }
             }
           `}</style>
         </div>

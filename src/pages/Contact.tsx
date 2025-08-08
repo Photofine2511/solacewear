@@ -8,8 +8,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Clock, 
+  Search,
+  ChevronDown,
+  ExternalLink,
+  Calendar,
+  Map
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Contact = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -20,6 +36,7 @@ const Contact = () => {
     subject: "",
     message: ""
   });
+  const [faqSearch, setFaqSearch] = useState("");
   const { toast } = useToast();
 
   const contactInfo = [
@@ -27,27 +44,77 @@ const Contact = () => {
       icon: Mail,
       title: "Email Us",
       details: "hello@solacewear.com",
-      description: "Send us an email anytime!"
+      description: "Send us an email anytime!",
+      color: "from-blue-500 to-blue-600",
+      bgColor: "bg-blue-50"
     },
     {
       icon: Phone,
       title: "Call Us",
       details: "+1 (555) 123-4567",
-      description: "Mon-Fri from 8am to 6pm"
+      description: "Mon-Fri from 8am to 6pm",
+      color: "from-green-500 to-green-600",
+      bgColor: "bg-green-50"
     },
     {
       icon: MapPin,
       title: "Visit Us",
       details: "123 Fashion Street, NY 10001",
-      description: "Come visit our flagship store"
+      description: "Come visit our flagship store",
+      color: "from-purple-500 to-purple-600",
+      bgColor: "bg-purple-50"
     },
     {
       icon: Clock,
       title: "Business Hours",
       details: "Mon-Fri: 9am-6pm",
-      description: "Saturday: 10am-4pm"
+      description: "Saturday: 10am-4pm",
+      color: "from-orange-500 to-orange-600",
+      bgColor: "bg-orange-50"
     }
   ];
+
+  const storeHours = [
+    { day: "Monday", hours: "9:00 AM - 6:00 PM", status: "open" },
+    { day: "Tuesday", hours: "9:00 AM - 6:00 PM", status: "open" },
+    { day: "Wednesday", hours: "9:00 AM - 6:00 PM", status: "open" },
+    { day: "Thursday", hours: "9:00 AM - 6:00 PM", status: "open" },
+    { day: "Friday", hours: "9:00 AM - 6:00 PM", status: "open" },
+    { day: "Saturday", hours: "10:00 AM - 4:00 PM", status: "open" },
+    { day: "Sunday", hours: "Closed", status: "closed" }
+  ];
+
+  const faqs = [
+    {
+      question: "What's your return policy?",
+      answer: "We offer 30-day returns on all unworn items with tags attached. Simply initiate a return through your account or contact our customer service team."
+    },
+    {
+      question: "Do you offer international shipping?",
+      answer: "Yes, we ship worldwide! Shipping costs vary by location and are calculated at checkout. Most international orders arrive within 7-14 business days."
+    },
+    {
+      question: "How can I track my order?",
+      answer: "You'll receive a tracking number via email once your order ships. You can also track your order through your account dashboard."
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and Google Pay for secure checkout."
+    },
+    {
+      question: "Do you offer gift cards?",
+      answer: "Yes! Gift cards are available in denominations from $25 to $500 and can be used for any purchase on our website or in-store."
+    },
+    {
+      question: "Can I modify or cancel my order?",
+      answer: "Orders can be modified or cancelled within 2 hours of placement. After that, orders are processed and cannot be changed. Contact us immediately if you need assistance."
+    }
+  ];
+
+  const filteredFaqs = faqs.filter(faq => 
+    faq.question.toLowerCase().includes(faqSearch.toLowerCase()) ||
+    faq.answer.toLowerCase().includes(faqSearch.toLowerCase())
+  );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -84,40 +151,55 @@ const Contact = () => {
 
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const openGoogleMaps = () => {
+    const address = encodeURIComponent("123 Fashion Street, New York, NY 10001");
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Header 
         cartItemsCount={totalCartItems} 
         onCartOpen={() => setIsCartOpen(true)} 
       />
       
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
-        <section className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-          </p>
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Enhanced Hero Section */}
+        <section className="relative text-center mb-20">
+          {/* Background gradient and texture */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 rounded-3xl -z-10"></div>
+          <div className="absolute inset-0 opacity-50 -z-10 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23004225%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+          
+          <div className="relative z-10 py-16">
+            <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent font-serif mb-6">
+              Get in Touch
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+              We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+          </div>
         </section>
 
-        {/* Contact Info Cards */}
-        <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Enhanced Contact Info Cards */}
+        <section className="mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="text-center p-6 transition-all duration-300 hover:shadow-card-hover animate-fade-in">
+              <Card 
+                key={index} 
+                className="group text-center p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm rounded-2xl"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <CardContent className="pt-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                    <info.icon className="w-8 h-8 text-primary" />
+                  <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${info.color} rounded-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <info.icon className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-primary mb-2">
+                  <h3 className="text-2xl font-bold text-primary mb-4 font-serif">
                     {info.title}
                   </h3>
-                  <p className="font-medium text-foreground mb-1">
+                  <p className="font-medium text-foreground mb-2 text-lg">
                     {info.details}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground">
                     {info.description}
                   </p>
                 </CardContent>
@@ -126,18 +208,18 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Form and Map */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle className="text-2xl text-primary">Send us a Message</CardTitle>
+        {/* Contact Form and Store Info */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+          {/* Enhanced Contact Form */}
+          <Card className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl h-full">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-3xl text-primary font-serif">Send us a Message</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Name *</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <Label htmlFor="name" className="text-sm font-medium text-primary">Name *</Label>
                     <Input
                       id="name"
                       name="name"
@@ -145,10 +227,11 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       placeholder="Your full name"
+                      className="h-12 rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white focus:border-primary transition-all duration-200"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
+                  <div className="space-y-3">
+                    <Label htmlFor="email" className="text-sm font-medium text-primary">Email *</Label>
                     <Input
                       id="email"
                       name="email"
@@ -157,12 +240,13 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       placeholder="your@email.com"
+                      className="h-12 rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white focus:border-primary transition-all duration-200"
                     />
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject *</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="subject" className="text-sm font-medium text-primary">Subject *</Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -170,11 +254,12 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="What's this about?"
+                    className="h-12 rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white focus:border-primary transition-all duration-200"
                   />
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message *</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="message" className="text-sm font-medium text-primary">Message *</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -182,77 +267,123 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="Tell us how we can help you..."
-                    className="min-h-32"
+                    className="min-h-32 rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white focus:border-primary transition-all duration-200 resize-none"
                   />
                 </div>
                 
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+                <Button 
+                  type="submit" 
+                  className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                >
                   Send Message
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          {/* Map and Store Info */}
-          <div className="space-y-6">
-            <Card className="animate-fade-in">
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">Visit Our Store</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center">
-                  <p className="text-muted-foreground">Interactive Map Coming Soon</p>
-                </div>
-                <div className="space-y-4">
+          {/* Enhanced Map and Store Info */}
+          <Card className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-3xl text-primary font-serif">Visit Our Store</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {/* Embedded Google Maps */}
+              <div className="aspect-video bg-gray-100 rounded-xl mb-6 overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215583012064!2d-74.00601508459367!3d40.71277597933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a165bedccab%3A0x2cb2ddf003b5ae01!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1640995200000!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-primary mb-2">Flagship Store</h4>
-                    <p className="text-muted-foreground">
-                      123 Fashion Street<br />
-                      New York, NY 10001<br />
-                      United States
-                    </p>
+                    <button 
+                      onClick={openGoogleMaps}
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left group"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <span>123 Fashion Street<br />
+                        New York, NY 10001<br />
+                        United States</span>
+                        <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                      </div>
+                    </button>
                   </div>
-                  
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-primary mb-2">Store Hours</h4>
-                    <div className="text-muted-foreground space-y-1">
-                      <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                      <p>Saturday: 10:00 AM - 4:00 PM</p>
-                      <p>Sunday: Closed</p>
+                    <h4 className="font-semibold text-primary mb-3">Store Hours</h4>
+                    <div className="space-y-2">
+                      {storeHours.map((hour, index) => (
+                        <div key={index} className="flex justify-between items-center">
+                          <span className="text-sm text-muted-foreground">{hour.day}</span>
+                          <span className={`text-sm font-medium ${
+                            hour.status === 'open' 
+                              ? 'text-green-600' 
+                              : 'text-red-500'
+                          }`}>
+                            {hour.hours}
+                          </span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
-            <Card className="animate-fade-in">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-primary mb-4">
-                  Frequently Asked Questions
-                </h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1">What's your return policy?</h4>
-                    <p className="text-sm text-muted-foreground">
-                      We offer 30-day returns on all unworn items with tags attached.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1">Do you offer international shipping?</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Yes, we ship worldwide. Shipping costs vary by location.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1">How can I track my order?</h4>
-                    <p className="text-sm text-muted-foreground">
-                      You'll receive a tracking number via email once your order ships.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+        {/* Full Width FAQ Section */}
+        <section className="mb-20">
+          <Card className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl">
+            <CardContent className="p-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <Search className="w-5 h-5 text-primary" />
+                <Input
+                  placeholder="Search FAQs..."
+                  value={faqSearch}
+                  onChange={(e) => setFaqSearch(e.target.value)}
+                  className="flex-1 rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white focus:border-primary transition-all duration-200"
+                />
+              </div>
+              
+              <Accordion type="single" collapsible className="space-y-4">
+                {filteredFaqs.map((faq, index) => (
+                  <AccordionItem 
+                    key={index} 
+                    value={`item-${index}`}
+                    className="border border-gray-200 rounded-xl overflow-hidden"
+                  >
+                    <AccordionTrigger className="px-6 py-4 hover:bg-gray-50/50 transition-colors duration-200">
+                      <span className="text-left font-medium text-primary">{faq.question}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-4">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+              
+              {filteredFaqs.length === 0 && (
+                <p className="text-center text-muted-foreground py-8">
+                  No FAQs match your search. Try different keywords.
+                </p>
+              )}
+            </CardContent>
+          </Card>
         </section>
       </main>
       
