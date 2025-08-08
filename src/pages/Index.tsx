@@ -136,22 +136,6 @@ const Index = () => {
 
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const heroImages = [
-    {
-      image: "/src/assets/hero/1.png",
-      title: "Ready to Ship",
-      description: "Shop our latest collection of premium comfort wear",
-      buttonText: "Shop Now",
-      buttonLink: "/shop"
-    },
-    {
-      image: "/src/assets/hero/2.png",
-      title: "Ready to Customise",
-      description: "Customise your own piece of comfort wear",
-      buttonText: "Customise Now",
-      buttonLink: "/collections"
-    }
-  ]
 
   const brandLogos = [
     { name: "Zara", img: Zara },
@@ -189,7 +173,7 @@ const Index = () => {
             {/* Ready to SHIP Panel */}
             <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
               <img 
-                src={heroImages[0].image}
+                src="https://i.ibb.co/Ng4Fw5ZZ/2.png"
                 alt="Ready to Ship" 
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -210,7 +194,7 @@ const Index = () => {
             {/* Ready to CUSTOMISE Panel */}
             <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
               <img 
-                src={heroImages[1].image}
+                src="https://i.ibb.co/sdt3SZds/1.png"
                 alt="Ready to Customise" 
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
