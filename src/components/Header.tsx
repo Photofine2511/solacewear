@@ -24,6 +24,7 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
   const navigation = [
     { name: "Shop", href: "/shop" },
     { name: "Collections", href: "/collections" },
+    { name: "Customizer", href: "/customizer" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];

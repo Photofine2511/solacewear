@@ -1,10 +1,14 @@
 import { Separator } from "@/components/ui/separator";
 
 export const Footer = () => {
-  const footerSections = [
+    const footerSections = [
     {
       title: "Shop",
       links: ["New Arrivals", "Best Sellers", "Sale", "Gift Cards"],
+    },
+    {
+      title: "Tools",
+      links: ["Customizer", "Size Guide", "Style Guide", "Virtual Try-On"],
     },
     {
       title: "Company",

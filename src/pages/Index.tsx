@@ -205,7 +205,7 @@ const Index = () => {
                 </h2>
                 <Button 
                   className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                  onClick={() => navigate("/collections")}
+                  onClick={() => navigate("/customizer")}
                 >
                   Customise Now
                 </Button>
