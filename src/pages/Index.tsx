@@ -12,13 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Zara from "@/assets/brand-logo/zara.png";
-import Hm from "@/assets/brand-logo/h&m.png";
-import Prada from "@/assets/brand-logo/prada.png";
-import Gucci from "@/assets/brand-logo/gucci.png";
-import LouisVuitton from "@/assets/brand-logo/louis-vuitton.png";
-import Dior from "@/assets/brand-logo/dior.png";
-import Versace from "@/assets/brand-logo/versace.png";
 
 
 const getTopCategories = (products, count = 6) => {
@@ -40,54 +33,6 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const topCategories = getTopCategories(products, 6);
 
-  // Brands slider pause on hover functionality
-  useEffect(() => {
-    const sliderContainer = document.getElementById('brands-slider-container');
-    const slider = document.getElementById('brands-slider');
-
-    if (sliderContainer && slider) {
-      const handleMouseEnter = () => {
-        slider.classList.add('paused');
-      };
-
-      const handleMouseLeave = () => {
-        slider.classList.remove('paused');
-      };
-
-      sliderContainer.addEventListener('mouseenter', handleMouseEnter);
-      sliderContainer.addEventListener('mouseleave', handleMouseLeave);
-
-      return () => {
-        sliderContainer.removeEventListener('mouseenter', handleMouseEnter);
-        sliderContainer.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    }
-  }, []);
-
-  // Intersection Observer for fade-in animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const brandsSection = document.querySelector('.brands-section');
-    if (brandsSection) {
-      observer.observe(brandsSection);
-    }
-
-    return () => {
-      if (brandsSection) {
-        observer.unobserve(brandsSection);
-      }
-    };
-  }, []);
 
   const addToCart = (product: Product) => {
     setCartItems((prevItems) => {
@@ -137,15 +82,6 @@ const Index = () => {
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
 
-  const brandLogos = [
-    { name: "Zara", img: Zara },
-    { name: "H&M", img: Hm },
-    { name: "Prada", img: Prada },
-    { name: "Gucci", img: Gucci },
-    { name: "Louis Vuitton", img: LouisVuitton },
-    { name: "Dior", img: Dior },
-    {name : "Versace", img: Versace}
-  ];
 
   const getInitialTimer = () => 24 * 60 * 60; // 24 hours in seconds
   const [timer, setTimer] = useState(getInitialTimer());
@@ -179,7 +115,7 @@ const Index = () => {
               />
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight">
                   Ready to SHIP
                 </h2>
                 <Button 
@@ -200,7 +136,7 @@ const Index = () => {
               />
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="absolute inset-0 flex flex-col items-end justify-center p-8 text-white">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight text-right">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight text-right">
                   Ready to CUSTOMISE
                 </h2>
                 <Button 
@@ -215,115 +151,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Brand Slider Section */}
-      <section className="w-full py-12 sm:py-16 bg-gradient-to-br from-white via-gray-50 to-gray-100 overflow-hidden relative brands-section opacity-0">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Heading */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
-              Brands We Work With
-            </h2>
-            {/* Subtle gradient underline */}
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-yellow-500 mx-auto rounded-full"></div>
-          </div>
-          
-          {/* Brands Slider */}
-          <div className="relative group" id="brands-slider-container">
-            <div 
-              className="flex items-center gap-12 sm:gap-16 md:gap-20 lg:gap-24 animate-brand-slider whitespace-nowrap"
-              style={{ animation: 'brandSlider 25s linear infinite' }}
-              id="brands-slider"
-            >
-              {brandLogos.map((brand, idx) => (
-                <div 
-                  key={brand.name + idx} 
-                  className="flex-shrink-0 flex flex-col items-center mx-4 sm:mx-6 md:mx-8 group/brand"
-                >
-                  <div className="relative p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group-hover/brand:shadow-xl border border-gray-100">
-                    <img 
-                      src={brand.img} 
-                      alt={brand.name} 
-                      className="h-12 sm:h-16 md:h-20 w-auto object-contain filter grayscale group-hover/brand:grayscale-0 transition-all duration-300" 
-                    />
-                  </div>
-                  <span className="text-xs sm:text-sm font-medium text-muted-foreground mt-2 group-hover/brand:text-primary transition-colors duration-300">
-                    {brand.name}
-                  </span>
-                </div>
-              ))}
-              {/* Duplicate logos for seamless loop */}
-              {brandLogos.map((brand, idx) => (
-                <div 
-                  key={brand.name + 'repeat' + idx} 
-                  className="flex-shrink-0 flex flex-col items-center mx-4 sm:mx-6 md:mx-8 group/brand"
-                >
-                  <div className="relative p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group-hover/brand:shadow-xl border border-gray-100">
-                    <img 
-                      src={brand.img} 
-                      alt={brand.name} 
-                      className="h-12 sm:h-16 md:h-20 w-auto object-contain filter grayscale group-hover/brand:grayscale-0 transition-all duration-300" 
-                    />
-                  </div>
-                  <span className="text-xs sm:text-sm font-medium text-muted-foreground mt-2 group-hover/brand:text-primary transition-colors duration-300">
-                    {brand.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Custom CSS for animations */}
-          <style>{`
-            @keyframes brandSlider {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            
-            @keyframes fadeInUp {
-              from {
-                opacity: 0;
-                transform: translateY(30px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            
-            .animate-brand-slider {
-              animation: brandSlider 25s linear infinite;
-            }
-            
-            .animate-brand-slider.paused {
-              animation-play-state: paused;
-            }
-            
-            .brands-section.animate-fade-in {
-              opacity: 1;
-              animation: fadeInUp 0.8s ease-out;
-            }
-            
-            @media (max-width: 768px) {
-              .animate-brand-slider {
-                animation-duration: 20s;
-              }
-            }
-            
-            @media (max-width: 480px) {
-              .animate-brand-slider {
-                animation-duration: 15s;
-              }
-            }
-          `}</style>
-        </div>
-      </section>
       
       <main>
         
         {/* Featured Products Section */}
         <section className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl xs:text-3xl md:text-4xl font-bold text-primary mb-2 sm:mb-4">
+            <h2 className="text-2xl xs:text-3xl md:text-4xl font-heading text-primary mb-2 sm:mb-4">
               Featured Collection
             </h2>
             <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -353,7 +187,7 @@ const Index = () => {
         {/* Categories Section */}
         <section className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl xs:text-3xl md:text-4xl font-bold text-primary mb-2 sm:mb-4">
+            <h2 className="text-2xl xs:text-3xl md:text-4xl font-heading text-primary mb-2 sm:mb-4">
               Shop by Category
             </h2>
             <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto">

@@ -86,12 +86,12 @@ const Collections = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-            <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-heading text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
               Our Collections
             </h1>
             <Sparkles className="h-8 w-8 text-primary animate-pulse" />
           </div>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground font-primary max-w-4xl mx-auto leading-relaxed">
             Discover curated collections designed for every aspect of your lifestyle. 
             From everyday essentials to special occasion pieces, find your perfect style.
           </p>

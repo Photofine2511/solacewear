@@ -27,7 +27,7 @@ export const Newsletter = () => {
   };
 
   return (
-    <section className="py-16 bg-muted">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Card className="max-w-4xl mx-auto bg-card border-0 shadow-card animate-fade-in">
           <CardContent className="p-8 md:p-12">
@@ -38,7 +38,7 @@ export const Newsletter = () => {
                   <Mail className="w-8 h-8 text-accent" />
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+                <h2 className="text-3xl md:text-4xl font-heading text-primary mb-4">
                   Stay in Style
                 </h2>
                 
@@ -64,7 +64,7 @@ export const Newsletter = () => {
               </div>
 
               {/* Form */}
-              <div className="bg-background p-8 rounded-xl shadow-sm">
+              <div className="p-8 rounded-xl shadow-sm">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <label htmlFor="newsletter-email" className="text-sm font-medium text-foreground">

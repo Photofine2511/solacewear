@@ -25,12 +25,12 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-muted mt-16">
+    <footer className="bg-background mt-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold text-primary mb-4">Solacewear</h3>
+            <h3 className="text-2xl font-heading text-primary mb-4">Solacewear</h3>
             <p className="text-muted-foreground leading-relaxed">
               Premium comfort wear for the modern lifestyle. Designed with care, made to last.
             </p>

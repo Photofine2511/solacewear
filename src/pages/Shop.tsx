@@ -169,7 +169,7 @@ const Shop = () => {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-primary mb-4">Shop All Products</h1>
+          <h1 className="text-4xl font-heading text-primary mb-4">Shop All Products</h1>
           <p className="text-lg text-muted-foreground">
             Explore our complete collection of premium comfort wear
           </p>

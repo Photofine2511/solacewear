@@ -171,10 +171,10 @@ const Contact = () => {
           <div className="absolute inset-0 opacity-50 -z-10 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23004225%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
           
           <div className="relative z-10 py-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent font-serif mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent font-heading mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>
@@ -193,7 +193,7 @@ const Contact = () => {
                   <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${info.color} rounded-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                     <info.icon className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-4 font-serif">
+                  <h3 className="text-2xl font-bold text-primary mb-4 font-heading">
                     {info.title}
                   </h3>
                   <p className="font-medium text-foreground mb-2 text-lg">
@@ -213,7 +213,7 @@ const Contact = () => {
           {/* Enhanced Contact Form */}
           <Card className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl h-full">
             <CardHeader className="pb-6">
-              <CardTitle className="text-3xl text-primary font-serif">Send us a Message</CardTitle>
+              <CardTitle className="text-3xl text-primary font-heading">Send us a Message</CardTitle>
             </CardHeader>
             <CardContent className="pb-8">
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -284,7 +284,7 @@ const Contact = () => {
           {/* Enhanced Map and Store Info */}
           <Card className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl">
             <CardHeader className="pb-6">
-              <CardTitle className="text-3xl text-primary font-serif">Visit Our Store</CardTitle>
+              <CardTitle className="text-3xl text-primary font-heading">Visit Our Store</CardTitle>
             </CardHeader>
             <CardContent>
               {/* Embedded Google Maps */}

@@ -92,12 +92,12 @@ const About = () => {
           <div className="relative z-10 py-16">
             <div className="flex items-center justify-center gap-3 mb-6">
               <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-              <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent font-serif">
+              <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent font-heading">
                 About Solacewear
               </h1>
               <Sparkles className="h-8 w-8 text-primary animate-pulse" />
             </div>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-primary">
               Born from a simple belief that comfort shouldn't compromise style, 
               Solacewear creates premium clothing for the modern lifestyle.
             </p>
@@ -108,9 +108,9 @@ const About = () => {
         <section className="mb-20 fade-in-section">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl font-bold text-primary font-serif">Our Story</h2>
+              <h2 className="text-4xl font-heading text-primary font-heading">Our Story</h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                <p>
+                <p className="font-primary">
                   Founded in 2020, Solacewear emerged from a personal quest to find clothing 
                   that seamlessly blended comfort with contemporary style. Our founders, 
                   frustrated with the false choice between looking good and feeling comfortable, 
@@ -123,14 +123,14 @@ const About = () => {
                   "We believe that what you wear should make you feel confident, comfortable, and connected to your values."
                 </blockquote>
                 
-                <p>
+                <p className="font-primary">
                   Today, we're proud to offer a carefully curated collection of premium 
                   comfort wear that doesn't sacrifice style for softness. Every piece is 
                   designed with the modern individual in mind – someone who values quality, 
                   comfort, and conscious consumption.
                 </p>
                 
-                <p>
+                <p className="font-primary">
                   From our sustainable sourcing practices to our commitment to fair labor, 
                   Solacewear is more than just a clothing brand. We're a community of 
                   like-minded individuals who believe that what we wear should make us 
@@ -157,10 +157,10 @@ const About = () => {
         {/* Enhanced Values Section */}
         <section className="mb-20 fade-in-section">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 font-serif">
+            <h2 className="text-4xl md:text-5xl font-heading text-primary mb-6 font-heading">
               Our Values
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground font-primary max-w-3xl mx-auto leading-relaxed">
               These core principles guide everything we do, from design to delivery.
             </p>
           </div>
@@ -176,7 +176,7 @@ const About = () => {
                   <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${value.color} rounded-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                     <value.icon className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-4 font-serif">
+                  <h3 className="text-2xl font-bold text-primary mb-4 font-heading">
                     {value.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -193,7 +193,7 @@ const About = () => {
         {/* Enhanced Team Section */}
         <section className="fade-in-section">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 font-serif">
+            <h2 className="text-4xl md:text-5xl font-heading text-primary mb-6 font-heading">
               Meet the Team
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -238,7 +238,7 @@ const About = () => {
                       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-2 font-serif">
+                  <h3 className="text-2xl font-bold text-primary mb-2 font-heading">
                     {member.name}
                   </h3>
                   <p className="text-primary/80 font-medium mb-3">

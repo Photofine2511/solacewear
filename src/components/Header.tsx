@@ -75,7 +75,7 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
                 to={item.href}
                 className={`relative group font-medium text-base tracking-wide transition-all duration-300 ${
                   location.pathname === item.href
-                    ? "text-primary font-semibold"
+                    ? "text-primary font-altone"
                     : "text-foreground hover:text-primary"
                 }`}
               >
