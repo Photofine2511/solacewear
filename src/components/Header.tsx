@@ -60,7 +60,9 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
                   src={SiteLogo} 
                   alt="Solacewear Logo" 
                   className={`transition-all duration-300 ease-out group-hover:scale-105 group-hover:drop-shadow-lg ${
-                    isScrolled ? 'h-6 w-auto' : 'h-8 w-auto'
+                    isScrolled 
+                      ? 'h-4 sm:h-6 w-auto' 
+                      : 'h-6 sm:h-8 w-auto'
                   }`}
                 />
               </div>
