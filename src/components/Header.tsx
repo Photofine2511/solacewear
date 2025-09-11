@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ShoppingCart, Menu, X, User, Heart, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import SiteLogo from "@/assets/site-logo.png";
+import SiteLogo from "@/assets/logos/Logo_Muted_Gold.png";
 import { products } from "@/data/products";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SearchDrawer } from "@/components/SearchDrawer";
@@ -49,8 +49,8 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isScrolled ? 'h-16' : 'h-20'
         }`}>
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Left side - Logo */}
+          <div className="flex-shrink-0">
             <Link 
               to="/" 
               className="flex items-center gap-2 group relative"
@@ -60,7 +60,7 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
                   src={SiteLogo} 
                   alt="Solacewear Logo" 
                   className={`transition-all duration-300 ease-out group-hover:scale-105 group-hover:drop-shadow-lg ${
-                    isScrolled ? 'h-20 w-auto' : 'h-28 w-auto'
+                    isScrolled ? 'h-6 w-auto' : 'h-8 w-auto'
                   }`}
                 />
               </div>
@@ -68,7 +68,7 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 ml-8">
+          <nav className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -95,8 +95,8 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
             ))}
           </nav>
 
-          {/* Cart and Mobile Menu */}
-          <div className="flex items-center space-x-1">
+          {/* Right side - Cart and Mobile Menu */}
+          <div className="flex items-center space-x-1 flex-shrink-0">
             {/* Search Icon & Drawer */}
             <Button 
               variant="ghost" 
