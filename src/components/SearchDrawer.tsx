@@ -32,9 +32,9 @@ export const SearchDrawer: React.FC<SearchDrawerProps> = ({ isOpen, onOpenChange
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-2">
+          <SheetTitle className="flex items-center gap-2 font-manrope">
             <Search className="h-5 w-5 text-primary" />
-            Search Products
+            SEARCH PRODUCTS
           </SheetTitle>
         </SheetHeader>
         <div className="mt-6">
@@ -43,8 +43,8 @@ export const SearchDrawer: React.FC<SearchDrawerProps> = ({ isOpen, onOpenChange
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              placeholder="Search products..."
-              className="w-full px-4 py-3 rounded-lg border border-muted bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all duration-300"
+              placeholder="Search Products..."
+              className="w-full px-4 py-3 rounded-lg border border-muted bg-background text-black-300 font-manrope focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all duration-300"
               autoFocus
             />
             {query && (

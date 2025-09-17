@@ -148,6 +148,14 @@ export default {
 						transform: 'translateY(0)',
 						opacity: '1'
 					}
+				},
+				'slide': {
+					'0%': {
+						transform: 'translateX(-100%)'
+					},
+					'100%': {
+						transform: 'translateX(100%)'
+					}
 				}
 			},
 			animation: {
@@ -158,7 +166,8 @@ export default {
 				'slide-in-right': 'slide-in-right 0.3s ease-out',
 				'slide-in-left': 'slide-in-left 0.3s ease-out',
 				'slide-in-up': 'slide-in-up 0.3s ease-out',
-				'slide-in-down': 'slide-in-down 0.3s ease-out'
+				'slide-in-down': 'slide-in-down 0.3s ease-out',
+				'slide': 'slide 12s linear infinite'
 			},
 			boxShadow: {
 				'card': 'var(--card-shadow)',

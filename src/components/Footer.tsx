@@ -1,72 +1,47 @@
 import { Separator } from "@/components/ui/separator";
+import { Instagram, Twitter, Facebook, Youtube } from "lucide-react";
 
 export const Footer = () => {
-    const footerSections = [
-    {
-      title: "Shop",
-      links: ["New Arrivals", "Best Sellers", "Sale", "Gift Cards"],
-    },
-    {
-      title: "Tools",
-      links: ["Customizer", "Size Guide", "Style Guide", "Virtual Try-On"],
-    },
-    {
-      title: "Company",
-      links: ["About Us", "Careers", "Press", "Sustainability"],
-    },
-    {
-      title: "Support",
-      links: ["Contact", "FAQs", "Size Guide", "Returns"],
-    },
-    {
-      title: "Connect",
-      links: ["Newsletter", "Instagram", "Twitter", "Facebook"],
-    },
-  ];
-
   return (
     <footer className="bg-background mt-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <h3 className="text-2xl font-heading text-primary mb-4">Solacewear</h3>
-            <p className="text-muted-foreground leading-relaxed">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          {/* Brand Section */}
+          <div className="text-center md:text-left mb-6 md:mb-0">
+            <h3 className="text-4xl font-heading text-primary mb-4">Solaceewear</h3>
+            <p className="text-muted-foreground leading-relaxed font-manrope">
               Premium comfort wear for the modern lifestyle. Designed with care, made to last.
             </p>
           </div>
 
-          {/* Navigation Sections */}
-          {footerSections.map((section) => (
-            <div key={section.title}>
-              <h4 className="font-semibold text-foreground mb-4">{section.title}</h4>
-              <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-accent transition-colors duration-200"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Social Links */}
+          <div className="flex space-x-6">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors duration-200">
+              <Instagram className="h-6 w-6" />
+            </a>
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors duration-200">
+              <Twitter className="h-6 w-6" />
+            </a>
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors duration-200">
+              <Facebook className="h-6 w-6" />
+            </a>
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors duration-200">
+              <Youtube className="h-6 w-6" />
+            </a>
+          </div>
         </div>
 
         <Separator className="my-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm">
-            © 2024 Solacewear. All rights reserved.
+          <p className="text-muted-foreground text-sm font-manrope">
+            © 2025 Solaceewear. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm font-manrope">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm font-manrope">
               Terms of Service
             </a>
           </div>

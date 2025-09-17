@@ -4,6 +4,7 @@ import { ShoppingCart, Menu, X, User, Heart, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import SiteLogo from "@/assets/logos/Logo_Muted_Gold.png";
+import SiteLogoSmall from "@/assets/logos/Logo-S.png";
 import { products } from "@/data/products";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SearchDrawer } from "@/components/SearchDrawer";
@@ -22,11 +23,11 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
   const navigate = useNavigate();
 
   const navigation = [
-    { name: "Shop", href: "/shop" },
-    { name: "Collections", href: "/collections" },
-    { name: "Customizer", href: "/customizer" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "SHOP", href: "/shop" },
+    { name: "COLLECTIONS", href: "/collections" },
+    { name: "CUSTOMIZER", href: "/customizer" },
+    { name: "ABOUT", href: "/about" },
+    { name: "CONTACT", href: "/contact" },
   ];
 
   // Handle scroll effect
@@ -57,11 +58,11 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
             >
               <div className="relative overflow-hidden rounded-lg">
                 <img 
-                  src={SiteLogo} 
+                  src={isScrolled ? SiteLogoSmall : SiteLogo} 
                   alt="Solacewear Logo" 
                   className={`transition-all duration-300 ease-out group-hover:scale-105 group-hover:drop-shadow-lg ${
                     isScrolled 
-                      ? 'h-4 sm:h-6 w-auto' 
+                      ? 'h-8 sm:h-14 w-auto' 
                       : 'h-6 sm:h-8 w-auto'
                   }`}
                 />
@@ -75,9 +76,9 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative group font-medium text-base tracking-wide transition-all duration-300 ${
+                className={`relative group font-bold text-sm tracking-wide transition-all duration-300 font-manrope ${
                   location.pathname === item.href
-                    ? "text-primary font-altone"
+                    ? "text-primary"
                     : "text-foreground hover:text-primary"
                 }`}
               >

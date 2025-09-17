@@ -76,40 +76,19 @@ export const ProductCard = ({ product, onAddToCart, onAddToWishlist }: ProductCa
             variant="secondary"
             size="sm"
             className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-105 ${
-              isQuickViewHovered ? 'bg-white text-black' : 'bg-white/90 text-black'
+              isQuickViewHovered ? 'bg-white text-black font-manrope' : 'bg-white/90 text-black font-manrope'
             }`}
             onMouseEnter={() => setIsQuickViewHovered(true)}
             onMouseLeave={() => setIsQuickViewHovered(false)}
             onClick={handleQuickViewClick}
           >
             <Eye className="h-4 w-4 mr-2" />
-            Quick View
+            QUICK VIEW
           </Button>
         </div>
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
-          {/* Category badge */}
-          <Badge 
-            variant="secondary" 
-            className="bg-background/90 backdrop-blur-sm text-primary font-bold text-sm px-3 py-1 rounded-lg shadow-lg border border-primary/30"
-          >
-            {product.category}
-          </Badge>
-          
-          {/* Status badges */}
-          {getBadgeText() && (
-            <Badge 
-              variant={getBadgeVariant() as any}
-              className={`font-bold text-xs px-3 py-1 rounded-lg shadow-lg ${
-                isNew ? 'bg-blue-500 text-white' :
-                product.sale ? 'bg-red-500 text-white' :
-                isBestSeller ? 'bg-yellow-500 text-black' : ''
-              }`}
-            >
-              {getBadgeText()}
-            </Badge>
-          )}
         </div>
 
         {/* Wishlist button */}
@@ -131,7 +110,7 @@ export const ProductCard = ({ product, onAddToCart, onAddToWishlist }: ProductCa
         </Button>
 
         {/* Stock indicator */}
-        {isLowStock && (
+        {false && (
           <Badge 
             variant="destructive" 
             className="absolute bottom-3 left-3 bg-orange-500 text-white font-bold text-xs px-3 py-1 rounded-lg shadow-lg"
@@ -142,40 +121,22 @@ export const ProductCard = ({ product, onAddToCart, onAddToWishlist }: ProductCa
       </div>
       
       <CardContent className="p-4">
-        <h3 className="font-semibold text-lg mb-2 text-foreground group-hover:text-accent transition-colors line-clamp-1">
-          {product.name}
+        <h3 className="font-bold font-manrope text-lg mb-2 text-foreground group-hover:text-accent transition-colors line-clamp-1">
+          {product.name.toUpperCase()}
         </h3>
-        <p className="text-muted-foreground text-xs mb-3 line-clamp-2">
-          {product.description}
-        </p>
-        
-        {/* Color variants */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs text-muted-foreground">Colors:</span>
-          <div className="flex gap-1">
-            {colorVariants.slice(0, 4).map((color, index) => (
-              <div
-                key={color.name}
-                className="w-4 h-4 rounded-full border-2 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform duration-200"
-                style={{ backgroundColor: color.hex }}
-                title={color.name}
-              />
-            ))}
-          </div>
-        </div>
         
         <p className="font-bold text-xl text-primary">
-          ${product.price.toFixed(2)}
+        ₹ {product.price.toFixed(2)}
         </p>
       </CardContent>
 
       <CardFooter className="p-4 pt-0">
         <Button 
           onClick={e => { e.stopPropagation(); onAddToCart(product); }}
-          className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 group/btn"
+          className="w-full h-10 bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
         >
           <ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
-          Add to Cart
+          ADD TO CART
         </Button>
       </CardFooter>
     </Card>

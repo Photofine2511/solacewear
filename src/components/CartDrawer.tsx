@@ -33,9 +33,9 @@ export const CartDrawer = ({
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-2">
+          <SheetTitle className="flex items-center gap-2 font-manrope">
             <ShoppingBag className="h-5 w-5" />
-            Shopping Cart ({totalItems})
+            SHOPPING CART ({totalItems})
           </SheetTitle>
         </SheetHeader>
 
@@ -43,8 +43,8 @@ export const CartDrawer = ({
           {cartItems.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 text-center">
               <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-              <p className="text-lg font-medium mb-2">Your cart is empty</p>
-              <p className="text-muted-foreground">Add some products to get started</p>
+              <p className="text-lg font-medium mb-2 font-manrope">Your cart is empty</p>
+              <p className="text-muted-foreground font-manrope">Add some products to get started</p>
             </div>
           ) : (
             <div className="space-y-4">

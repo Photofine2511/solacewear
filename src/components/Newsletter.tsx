@@ -42,22 +42,22 @@ export const Newsletter = () => {
                   Stay in Style
                 </h2>
                 
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed font-manrope">
                   Be the first to know about new collections, exclusive offers, 
                   and style tips. Join our community of comfort enthusiasts.
                 </p>
                 
                 <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
+                    <Check className="w-4 h-4 text-accent font-manrope" />
                     <span>Exclusive early access</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
+                    <Check className="w-4 h-4 text-accent font-manrope" />
                     <span>Style tips & trends</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
+                    <Check className="w-4 h-4 text-accent font-manrope" />
                     <span>Special member discounts</span>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ export const Newsletter = () => {
               <div className="p-8 rounded-xl shadow-sm">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <label htmlFor="newsletter-email" className="text-sm font-medium text-foreground">
+                    <label htmlFor="newsletter-email" className="text-sm font-medium text-foreground font-manrope">
                       Email Address
                     </label>
                     <Input
@@ -77,14 +77,14 @@ export const Newsletter = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="h-12"
+                      className="h-12 font-manrope"
                       disabled={isSubscribed}
                     />
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 hover:shadow-accent-glow"
+                    className="w-full h-12 bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
                     disabled={isSubscribed}
                   >
                     {isSubscribed ? (
@@ -93,11 +93,11 @@ export const Newsletter = () => {
                         <span>Subscribed!</span>
                       </div>
                     ) : (
-                      "Subscribe to Newsletter"
+                      "SUBSCRIBE TO NEWSLETTER"
                     )}
                   </Button>
                   
-                  <p className="text-xs text-muted-foreground text-center">
+                  <p className="text-xs text-muted-foreground text-center font-manrope">
                     We respect your privacy. Unsubscribe at any time.
                   </p>
                 </form>

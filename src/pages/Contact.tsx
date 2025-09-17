@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ShippingBanner } from "@/components/ShippingBanner";
 import { Header } from "@/components/Header";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
@@ -158,6 +159,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <ShippingBanner />
       <Header 
         cartItemsCount={totalCartItems} 
         onCartOpen={() => setIsCartOpen(true)} 
@@ -174,7 +176,7 @@ const Contact = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent font-heading mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-manrope">
               We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>
@@ -196,10 +198,10 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold text-primary mb-4 font-heading">
                     {info.title}
                   </h3>
-                  <p className="font-medium text-foreground mb-2 text-lg">
+                  <p className="font-medium text-foreground mb-2 text-lg font-manrope">
                     {info.details}
                   </p>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground font-manrope">
                     {info.description}
                   </p>
                 </CardContent>
@@ -219,7 +221,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="name" className="text-sm font-medium text-primary">Name *</Label>
+                    <Label htmlFor="name" className="text-sm font-medium text-primary font-manrope">Name *</Label>
                     <Input
                       id="name"
                       name="name"
@@ -231,7 +233,7 @@ const Contact = () => {
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="email" className="text-sm font-medium text-primary">Email *</Label>
+                    <Label htmlFor="email" className="text-sm font-medium text-primary font-manrope">Email *</Label>
                     <Input
                       id="email"
                       name="email"
@@ -246,7 +248,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="space-y-3">
-                  <Label htmlFor="subject" className="text-sm font-medium text-primary">Subject *</Label>
+                  <Label htmlFor="subject" className="text-sm font-medium text-primary font-manrope">Subject *</Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -259,7 +261,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="space-y-3">
-                  <Label htmlFor="message" className="text-sm font-medium text-primary">Message *</Label>
+                  <Label htmlFor="message" className="text-sm font-medium text-primary font-manrope">Message *</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -273,9 +275,9 @@ const Contact = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="w-full h-12 bg-black text-gray-300 font-manrope font-large px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
                 >
-                  Send Message
+                  SEND MESSAGE
                 </Button>
               </form>
             </CardContent>
@@ -298,47 +300,6 @@ const Contact = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-primary mb-2">Flagship Store</h4>
-                    <button 
-                      onClick={openGoogleMaps}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left group"
-                    >
-                      <div className="flex items-center space-x-2">
-                        <span>123 Fashion Street<br />
-                        New York, NY 10001<br />
-                        United States</span>
-                        <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-primary mb-3">Store Hours</h4>
-                    <div className="space-y-2">
-                      {storeHours.map((hour, index) => (
-                        <div key={index} className="flex justify-between items-center">
-                          <span className="text-sm text-muted-foreground">{hour.day}</span>
-                          <span className={`text-sm font-medium ${
-                            hour.status === 'open' 
-                              ? 'text-green-600' 
-                              : 'text-red-500'
-                          }`}>
-                            {hour.hours}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
               </div>
             </CardContent>
           </Card>

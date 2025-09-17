@@ -61,7 +61,7 @@ All colors MUST be HSL.
   :root {
     /* Palette: #222D52 (navy) & #FDFFFF (near-white) */
     /* #222D52 -> hsl(226, 42%, 23%); #FDFFFF -> hsl(180, 100%, 99%) */
-    --background: 45 50% 95%; /* #f7f3e7 */
+    --background: 0 0% 100%; /* white */
     --foreground: 226 42% 23%; /* #222D52 */
 
     --card: 180 100% 99%;
@@ -426,5 +426,14 @@ All colors MUST be HSL.
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

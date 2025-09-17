@@ -1,4 +1,5 @@
 import React from 'react';
+import { ShippingBanner } from '@/components/ShippingBanner';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -27,7 +28,7 @@ const Customizer = () => {
           </h1>
           
           {/* Subheading */}
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground mb-4 font-primary">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-manrope text-foreground mb-4">
             Stay Tuned!
           </h2>
 
@@ -43,7 +44,7 @@ const Customizer = () => {
               <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
                 <Palette className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 font-primary">Custom Colors</h3>
+              <h3 className="font-semibold text-foreground mb-2 font-manrope">Custom Colors</h3>
               <p className="text-sm text-muted-foreground text-center font-manrope">
                 Choose from a wide range of colors and patterns
               </p>
@@ -53,7 +54,7 @@ const Customizer = () => {
               <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
                 <Sparkles className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 font-primary">Personalization</h3>
+              <h3 className="font-semibold text-foreground mb-2 font-manrope">Personalization</h3>
               <p className="text-sm text-muted-foreground text-center font-manrope">
                 Add your own designs and personal touches
               </p>
@@ -63,7 +64,7 @@ const Customizer = () => {
               <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
                 <Clock className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2 font-primary">Real-time Preview</h3>
+              <h3 className="font-semibold text-foreground mb-2 font-manrope">Real-time Preview</h3>
               <p className="text-sm text-muted-foreground text-center font-manrope">
                 See your changes instantly as you design
               </p>
@@ -74,22 +75,22 @@ const Customizer = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               onClick={() => navigate('/shop')}
-              className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold font-primary"
+              className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground  font-manrope"
             >
-              Browse Our Shop
+              BROWSE OUR SHOP
             </Button>
             <Button 
               variant="outline"
               onClick={() => navigate('/')}
-              className="px-8 py-3 font-semibold font-primary"
+              className="px-8 py-3 font-semibold font-manrope"
             >
-              Back to Home
+              BACK TO HOME
             </Button>
           </div>
 
           {/* Newsletter Signup */}
           <div className="mt-16 p-8 bg-card rounded-xl shadow-sm max-w-md mx-auto">
-            <h3 className="text-lg font-semibold text-foreground mb-4 font-primary">
+            <h3 className="text-lg font-semibold text-foreground mb-4 font-manrope">
               Get Notified
             </h3>
             <p className="text-sm text-muted-foreground mb-4 font-manrope">
@@ -97,9 +98,9 @@ const Customizer = () => {
             </p>
             <Button 
               onClick={() => navigate('/#newsletter')}
-              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold font-primary"
+              className="w-full bg-accent text-gray-300 font-manrope"
             >
-              Subscribe to Updates
+              SUBSCRIBE TO UPDATES
             </Button>
           </div>
         </div>

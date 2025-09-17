@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ShippingBanner } from "@/components/ShippingBanner";
 import { Header } from "@/components/Header";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
@@ -77,6 +78,7 @@ const Collections = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <ShippingBanner />
       <Header 
         cartItemsCount={totalCartItems} 
         onCartOpen={() => setIsCartOpen(true)} 
@@ -91,7 +93,7 @@ const Collections = () => {
             </h1>
             <Sparkles className="h-8 w-8 text-primary animate-pulse" />
           </div>
-          <p className="text-xl text-muted-foreground font-primary max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground font-manrope max-w-4xl mx-auto leading-relaxed">
             Discover curated collections designed for every aspect of your lifestyle. 
             From everyday essentials to special occasion pieces, find your perfect style.
           </p>
@@ -143,21 +145,21 @@ const Collections = () => {
                     {/* Content Overlay */}
                     <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                       <div className="transform transition-all duration-300 group-hover:translate-y-0 translate-y-2">
-                        <h3 className="text-2xl font-bold mb-2 group-hover:text-white">
-                          {category}
+                        <h3 className="text-2xl font-manrope font-bold mb-2 group-hover:text-white">
+                          {category.toUpperCase()}
                         </h3>
-                        <p className="text-sm text-white/80 mb-4 group-hover:text-white/90">
+                        <p className="text-sm text-white/80 mb-4 group-hover:text-white/90 font-manrope">
                           {categoryInfo.description}
                         </p>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-white/70 group-hover:text-white/90">
+                          <span className="text-sm text-white/70 group-hover:text-white/90 font-manrope">
                             {categoryInfo.count} items
                           </span>
                           <Button 
-                            className="bg-white/20 hover:bg-white/30 text-white border-white/30 hover:border-white/50 transition-all duration-300 group-hover:scale-105 backdrop-blur-sm"
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/30 hover:border-white/50 transition-all duration-300 group-hover:scale-105 backdrop-blur-sm font-manrope"
                             size="sm"
                           >
-                            <span className="mr-2">View Products</span>
+                            <span className="mr-2">VIEW PRODUCTS</span>
                             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                           </Button>
                         </div>

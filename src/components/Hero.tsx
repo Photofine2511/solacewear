@@ -3,7 +3,7 @@ import heroImage from "@/assets/hero-image.jpg";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center bg-hero-gradient overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center bg-hero-gradient overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}

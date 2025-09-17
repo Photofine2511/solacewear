@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ShippingBanner } from "@/components/ShippingBanner";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -140,6 +141,7 @@ const Checkout = () => {
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-background">
+        <ShippingBanner />
         <Header cartItemsCount={0} onCartOpen={() => {}} />
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
@@ -157,6 +159,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ShippingBanner />
       <Header cartItemsCount={0} onCartOpen={() => {}} />
       
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">

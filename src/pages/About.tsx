@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ShippingBanner } from "@/components/ShippingBanner";
 import { Header } from "@/components/Header";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
@@ -77,6 +78,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <ShippingBanner />
       <Header 
         cartItemsCount={totalCartItems} 
         onCartOpen={() => setIsCartOpen(true)} 
@@ -97,7 +99,7 @@ const About = () => {
               </h1>
               <Sparkles className="h-8 w-8 text-primary animate-pulse" />
             </div>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-primary">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-manrope">
               Born from a simple belief that comfort shouldn't compromise style, 
               Solacewear creates premium clothing for the modern lifestyle.
             </p>
@@ -160,7 +162,7 @@ const About = () => {
             <h2 className="text-4xl md:text-5xl font-heading text-primary mb-6 font-heading">
               Our Values
             </h2>
-            <p className="text-xl text-muted-foreground font-primary max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground font-manrope max-w-3xl mx-auto leading-relaxed">
               These core principles guide everything we do, from design to delivery.
             </p>
           </div>
@@ -179,7 +181,7 @@ const About = () => {
                   <h3 className="text-2xl font-bold text-primary mb-4 font-heading">
                     {value.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground font-manrope leading-relaxed">
                     {value.description}
                   </p>
                 </CardContent>
@@ -196,7 +198,7 @@ const About = () => {
             <h2 className="text-4xl md:text-5xl font-heading text-primary mb-6 font-heading">
               Meet the Team
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-manrope">
               The passionate individuals behind Solacewear's vision and mission.
             </p>
           </div>
@@ -244,7 +246,7 @@ const About = () => {
                   <p className="text-primary/80 font-medium mb-3">
                     {member.role}
                   </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed font-manrope">
                     {member.description}
                   </p>
                 </CardContent>

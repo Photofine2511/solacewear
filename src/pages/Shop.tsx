@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ShippingBanner } from "@/components/ShippingBanner";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -123,7 +124,7 @@ const Shop = () => {
         onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
         disabled={currentPage === 1}
       >
-        Previous
+        PREVIOUS
       </Button>
       
       <div className="flex gap-1">
@@ -154,13 +155,14 @@ const Shop = () => {
         onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
         disabled={currentPage === totalPages}
       >
-        Next
+        NEXT
       </Button>
     </div>
   );
 
   return (
     <div className="min-h-screen bg-background">
+      <ShippingBanner />
       <Header 
         cartItemsCount={totalCartItems} 
         onCartOpen={() => setIsCartOpen(true)} 
@@ -170,7 +172,7 @@ const Shop = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-heading text-primary mb-4">Shop All Products</h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground font-manrope">
             Explore our complete collection of premium comfort wear
           </p>
         </div>
@@ -220,10 +222,10 @@ const Shop = () => {
                   <span className="text-xs font-medium">${priceRange[1]}</span>
                   <Button
                     size="sm"
-                    className="ml-2 px-3 py-1 text-xs"
+                    className="ml-2 px-3 py-1 text-xs font-manrope"
                     onClick={() => setAppliedPriceRange(priceRange)}
                   >
-                    Apply
+                    APPLY
                   </Button>
                 </div>
               </div>
@@ -248,7 +250,7 @@ const Shop = () => {
                 </Button>
               </div>
               
-              <Badge variant="secondary" className="px-3 py-1">
+              <Badge variant="secondary" className="px-3 py-1 font-manrope">
                 {sortedProducts.length} products
               </Badge>
             </div>

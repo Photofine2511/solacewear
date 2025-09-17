@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ShippingBanner } from "@/components/ShippingBanner";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ProductCard } from "@/components/ProductCard";
@@ -37,7 +38,7 @@ const Index = () => {
   const addToCart = (product: Product) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
-      
+
       if (existingItem) {
         toast({
           title: "Added to cart",
@@ -63,7 +64,7 @@ const Index = () => {
       removeFromCart(id);
       return;
     }
-    
+
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.id === id ? { ...item, quantity } : item
@@ -97,71 +98,78 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header 
-        cartItemsCount={totalCartItems} 
-        onCartOpen={() => setIsCartOpen(true)} 
+      <ShippingBanner />
+      <Header
+        cartItemsCount={totalCartItems}
+        onCartOpen={() => setIsCartOpen(true)}
       />
 
-      {/* Hero Two-Column Section */}
+      {/* Hero Carousel Section */}
       <section className="relative w-full py-4 md:py-6 mx-auto">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {/* Ready to SHIP Panel */}
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
-              <img 
-                src="https://i.ibb.co/Ng4Fw5ZZ/2.png"
-                alt="Ready to Ship" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/40"></div>
-              <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight">
-                  Ready to SHIP
-                </h2>
-                <Button 
-                  className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                  onClick={() => navigate("/shop")}
-                >
-                  Shop Now
-                </Button>
-              </div>
-            </div>
+          <Carousel className="w-full">
+            <CarouselContent>
+              {/* Ready to SHIP Panel */}
+              <CarouselItem>
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
+                  <img
+                    src="https://i.ibb.co/tTt88mxh/2.jpg"
+                    alt="Ready to Ship"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight">
+                      Ready to SHIP
+                    </h2>
+                    <Button
+                      className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
+                      onClick={() => navigate("/shop")}
+                    >
+                      SHOP NOW
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
 
-            {/* Ready to CUSTOMISE Panel */}
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
-              <img 
-                src="https://i.ibb.co/sdt3SZds/1.png"
-                alt="Ready to Customise" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/40"></div>
-              <div className="absolute inset-0 flex flex-col items-end justify-center p-8 text-white">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight text-right">
-                  Ready to CUSTOMISE
-                </h2>
-                <Button 
-                  className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                  onClick={() => navigate("/customizer")}
-                >
-                  Customise Now
-                </Button>
-              </div>
-            </div>
-          </div>
+              {/* Ready to CUSTOMISE Panel */}
+              <CarouselItem>
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
+                  <img
+                    src="https://i.ibb.co/Kc7RYj0k/1.jpg"
+                    alt="Ready to Customise"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex flex-col items-end justify-center p-8 text-white">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight text-right">
+                      Ready to CUSTOMISE
+                    </h2>
+                    <Button
+                      className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
+                      onClick={() => navigate("/customizer")}
+                    >
+                      CUSTOMISE NOW
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 
-      
+
       <main>
-        
+
         {/* Featured Products Section */}
         <section className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl xs:text-3xl md:text-4xl font-heading text-primary mb-2 sm:mb-4">
               Featured Collection
             </h2>
-            <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover our carefully curated selection of premium comfort wear, 
+            <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto font-manrope">
+              Discover our carefully curated selection of premium comfort wear,
               designed for those who value both style and comfort.
             </p>
           </div>
@@ -175,12 +183,12 @@ const Index = () => {
             ))}
           </div>
           <div className="flex justify-center">
-            <button
-              className="px-4 py-2 sm:px-6 sm:py-2 rounded bg-primary text-white font-semibold hover:bg-primary/90 transition text-sm sm:text-base"
+            <Button
+              className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
               onClick={() => navigate("/shop")}
             >
-              View All
-            </button>
+              VIEW ALL
+            </Button>
           </div>
         </section>
 
@@ -190,7 +198,7 @@ const Index = () => {
             <h2 className="text-2xl xs:text-3xl md:text-4xl font-heading text-primary mb-2 sm:mb-4">
               Shop by Category
             </h2>
-            <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto font-manrope">
               Explore our most popular categories and find your perfect style.
             </p>
           </div>
@@ -205,29 +213,28 @@ const Index = () => {
                         <img
                           src={firstProduct?.image}
                           alt={category}
-                          className="w-full h-40 xs:h-48 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-56 xs:h-64 sm:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/10" />
                       </div>
-                      <CardHeader>
-                        <CardTitle className="text-lg xs:text-xl text-primary group-hover:text-accent transition-colors">
-                          {category}
+                      <CardHeader className="pb-0">
+                        <CardTitle className="text-lg xs:text-xl text-primary group-hover:text-accent transition-colors font-manrope">
+                          {category.toUpperCase()}
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="space-y-2 xs:space-y-4">
-                        <p className="text-muted-foreground text-xs xs:text-sm">
-                          {products.filter(p => p.category === category).length} items
-                        </p>
-                        <Button className="w-full mt-2 xs:mt-4 bg-primary hover:bg-primary/90 transition-all duration-300 text-xs xs:text-sm">
-                          View Products
-                        </Button>
+                      <CardContent className="pt-0">
                       </CardContent>
                     </Card>
                   );
                 })}
               </div>
               <div className="flex justify-center">
-                <Button variant="outline" onClick={() => navigate("/collections")} className="text-xs xs:text-sm">Show All</Button>
+              <Button
+              className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
+              onClick={() => navigate("/shop")}
+            >
+              SHOW ALL
+            </Button>
               </div>
             </div>
           ) : (
@@ -253,9 +260,9 @@ const Index = () => {
           <img src="https://i.ibb.co/Xf5MqPk7/banner-img.png" alt="Promotional Banner" className="w-full h-auto object-cover rounded-xl" />
         </section>
       </main>
-      
+
       <Footer />
-      
+
       <CartDrawer
         isOpen={isCartOpen}
         onOpenChange={setIsCartOpen}
