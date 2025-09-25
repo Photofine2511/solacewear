@@ -446,6 +446,15 @@ const ProductDetails = () => {
                 </AccordionTrigger>
                 <AccordionContent className="px-8 pb-8">
                   <div className="space-y-6">
+                    {/* Size Chart Image */}
+                    <div className="flex justify-center mb-6">
+                      <img
+                        src="/src/assets/logos/solacewear-shirtdemo.png"
+                        alt="Size Chart Guide"
+                        className="w-80 h-auto rounded-lg shadow-md"
+                      />
+                    </div>
+                    
                     {/* Measurement Unit Toggle */}
                     <div className="flex items-center justify-center gap-4">
                       <span className="text-sm font-medium text-gray-600">Measurements in:</span>
