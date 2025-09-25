@@ -449,7 +449,7 @@ const ProductDetails = () => {
                     {/* Size Chart Image */}
                     <div className="flex justify-center mb-6">
                       <img
-                        src="/src/assets/logos/solacewear-shirtdemo.png"
+                        src="https://i.ibb.co/Gv3XZGMn/solacewear-shirtdemo.png"
                         alt="Size Chart Guide"
                         className="w-80 h-auto rounded-lg shadow-md"
                       />
