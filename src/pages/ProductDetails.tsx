@@ -8,18 +8,32 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { products } from "@/data/products";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { Heart, ShoppingCart, Truck, Check, ChevronLeft, ChevronRight, ZoomIn, Star } from "lucide-react";
 
-const defaultSizes = ["S", "M", "L", "XL", "XXL"];
+const defaultSizes = ["XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
 const defaultColors = [
   { name: "White", hex: "#FFFFFF" },
   { name: "Black", hex: "#000000" },
   { name: "Navy", hex: "#1B365D" },
   { name: "Red", hex: "#DC2626" }
 ];
+
+// Size measurements based on the provided images
+const sizeMeasurements = {
+  XS: { chest: { cm: 99.1, inches: 39 }, frontLength: { cm: 72.9, inches: 28.7 }, acrossShoulder: { cm: 41.9, inches: 16.5 } },
+  S: { chest: { cm: 104, inches: 40.9 }, frontLength: { cm: 74.9, inches: 29.5 }, acrossShoulder: { cm: 43.9, inches: 17.3 } },
+  M: { chest: { cm: 109, inches: 42.9 }, frontLength: { cm: 77, inches: 30.3 }, acrossShoulder: { cm: 47, inches: 18.5 } },
+  L: { chest: { cm: 115, inches: 45.3 }, frontLength: { cm: 78, inches: 30.7 }, acrossShoulder: { cm: 48.5, inches: 19.1 } },
+  XL: { chest: { cm: 121, inches: 47.6 }, frontLength: { cm: 79, inches: 31.1 }, acrossShoulder: { cm: 50.5, inches: 19.9 } },
+  XXL: { chest: { cm: 130, inches: 51.2 }, frontLength: { cm: 81.5, inches: 32.1 }, acrossShoulder: { cm: 52.6, inches: 20.7 } },
+  "3XL": { chest: { cm: 139, inches: 54.7 }, frontLength: { cm: 85.6, inches: 33.7 }, acrossShoulder: { cm: 55.9, inches: 22 } },
+  "4XL": { chest: { cm: 148, inches: 58.3 }, frontLength: { cm: 86.6, inches: 34.1 }, acrossShoulder: { cm: 59.4, inches: 23.4 } },
+  "5XL": { chest: { cm: 157, inches: 61.8 }, frontLength: { cm: 87.4, inches: 34.4 }, acrossShoulder: { cm: 63, inches: 24.8 } }
+};
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -33,6 +47,7 @@ const ProductDetails = () => {
   const [isWishlistHovered, setIsWishlistHovered] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isImageZoomed, setIsImageZoomed] = useState(false);
+  const [measurementUnit, setMeasurementUnit] = useState<"cm" | "inches">("cm");
   const navigate = useNavigate();
   
   // Enhanced image gallery with multiple variations
@@ -283,28 +298,6 @@ const ProductDetails = () => {
                     </p>
                   </div>
 
-                  {/* Size Selection */}
-                  <div>
-                    <Label className="block text-sm font-semibold text-gray-700 mb-3">
-                      Size
-                    </Label>
-                  <div className="flex gap-3 flex-wrap">
-                    {defaultSizes.map((size) => (
-                      <Button
-                        key={size}
-                        variant={selectedSize === size ? "default" : "outline"}
-                        onClick={() => setSelectedSize(size)}
-                          className={`min-w-[60px] h-12 transition-all duration-200 ${
-                            selectedSize === size 
-                              ? 'bg-primary text-white shadow-lg' 
-                              : 'hover:bg-primary/10'
-                          }`}
-                      >
-                        {size}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
 
                   {/* Color Selection */}
                   <div>
@@ -432,6 +425,110 @@ const ProductDetails = () => {
                 </div>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Size Selection Section */}
+        <Card className="mt-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+          <CardContent className="p-0">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="size-guide" className="border-0">
+                <AccordionTrigger className="px-8 py-6 hover:no-underline">
+                  <div className="flex items-center gap-3 text-left">
+                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">S</span>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900">Select Your Size</h3>
+                      <p className="text-gray-600 text-sm font-normal">Choose the perfect size for your comfort and style</p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-8 pb-8">
+                  <div className="space-y-6">
+                    {/* Measurement Unit Toggle */}
+                    <div className="flex items-center justify-center gap-4">
+                      <span className="text-sm font-medium text-gray-600">Measurements in:</span>
+                      <div className="flex bg-gray-100 rounded-lg p-1">
+                        <Button
+                          variant={measurementUnit === "cm" ? "default" : "ghost"}
+                          size="sm"
+                          onClick={() => setMeasurementUnit("cm")}
+                          className={`px-4 py-2 transition-all duration-200 ${
+                            measurementUnit === "cm" 
+                              ? 'bg-primary text-white shadow-md' 
+                              : 'hover:bg-gray-200'
+                          }`}
+                        >
+                          CM
+                        </Button>
+                        <Button
+                          variant={measurementUnit === "inches" ? "default" : "ghost"}
+                          size="sm"
+                          onClick={() => setMeasurementUnit("inches")}
+                          className={`px-4 py-2 transition-all duration-200 ${
+                            measurementUnit === "inches" 
+                              ? 'bg-primary text-white shadow-md' 
+                              : 'hover:bg-gray-200'
+                          }`}
+                        >
+                          INCHES
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Comprehensive Size Chart */}
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+                      <h3 className="text-lg font-semibold text-gray-800 mb-4">Size Chart - {measurementUnit.toUpperCase()}</h3>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                          <thead>
+                            <tr className="border-b border-gray-300">
+                              <th className="text-left py-3 px-2 font-semibold text-gray-700">SIZE</th>
+                              <th className="text-left py-3 px-2 font-semibold text-gray-700">CHEST</th>
+                              <th className="text-left py-3 px-2 font-semibold text-gray-700">FRONT LENGTH</th>
+                              <th className="text-left py-3 px-2 font-semibold text-gray-700">ACROSS SHOULDER</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {defaultSizes.map((size) => {
+                              const measurements = sizeMeasurements[size as keyof typeof sizeMeasurements];
+                              const unit = measurementUnit;
+                              return (
+                                <tr 
+                                  key={size} 
+                                  className="border-b border-gray-200 hover:bg-white/50 transition-colors"
+                                >
+                                  <td className="py-3 px-2 font-medium text-gray-800">{size}</td>
+                                  <td className="py-3 px-2 text-gray-600">{measurements.chest[unit]}</td>
+                                  <td className="py-3 px-2 text-gray-600">{measurements.frontLength[unit]}</td>
+                                  <td className="py-3 px-2 text-gray-600">{measurements.acrossShoulder[unit]}</td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      {/* Measurement Guide */}
+                      <div className="mt-6 p-4 bg-white/60 rounded-lg">
+                        <h4 className="font-semibold text-gray-800 mb-3">How to Measure</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                          <div className="space-y-2">
+                            <div><strong>Chest:</strong> Measure around the fullest part of your chest</div>
+                            <div><strong>Front Length:</strong> Measure from shoulder to bottom hem</div>
+                          </div>
+                          <div className="space-y-2">
+                            <div><strong>Across Shoulder:</strong> Measure from shoulder seam to shoulder seam</div>
+                            <div><strong>Fit:</strong> Regular fit for comfortable wear</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </CardContent>
         </Card>
 
