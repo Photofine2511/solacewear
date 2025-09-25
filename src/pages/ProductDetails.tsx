@@ -14,7 +14,7 @@ import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { Heart, ShoppingCart, Truck, Check, ChevronLeft, ChevronRight, ZoomIn, Star } from "lucide-react";
 
-const defaultSizes = ["XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
+const defaultSizes = ["S", "M", "L", "XL", "XXL"];
 const defaultColors = [
   { name: "White", hex: "#FFFFFF" },
   { name: "Black", hex: "#000000" },
@@ -24,15 +24,11 @@ const defaultColors = [
 
 // Size measurements based on the provided images
 const sizeMeasurements = {
-  XS: { chest: { cm: 99.1, inches: 39 }, frontLength: { cm: 72.9, inches: 28.7 }, acrossShoulder: { cm: 41.9, inches: 16.5 } },
   S: { chest: { cm: 104, inches: 40.9 }, frontLength: { cm: 74.9, inches: 29.5 }, acrossShoulder: { cm: 43.9, inches: 17.3 } },
   M: { chest: { cm: 109, inches: 42.9 }, frontLength: { cm: 77, inches: 30.3 }, acrossShoulder: { cm: 47, inches: 18.5 } },
   L: { chest: { cm: 115, inches: 45.3 }, frontLength: { cm: 78, inches: 30.7 }, acrossShoulder: { cm: 48.5, inches: 19.1 } },
   XL: { chest: { cm: 121, inches: 47.6 }, frontLength: { cm: 79, inches: 31.1 }, acrossShoulder: { cm: 50.5, inches: 19.9 } },
-  XXL: { chest: { cm: 130, inches: 51.2 }, frontLength: { cm: 81.5, inches: 32.1 }, acrossShoulder: { cm: 52.6, inches: 20.7 } },
-  "3XL": { chest: { cm: 139, inches: 54.7 }, frontLength: { cm: 85.6, inches: 33.7 }, acrossShoulder: { cm: 55.9, inches: 22 } },
-  "4XL": { chest: { cm: 148, inches: 58.3 }, frontLength: { cm: 86.6, inches: 34.1 }, acrossShoulder: { cm: 59.4, inches: 23.4 } },
-  "5XL": { chest: { cm: 157, inches: 61.8 }, frontLength: { cm: 87.4, inches: 34.4 }, acrossShoulder: { cm: 63, inches: 24.8 } }
+  XXL: { chest: { cm: 130, inches: 51.2 }, frontLength: { cm: 81.5, inches: 32.1 }, acrossShoulder: { cm: 52.6, inches: 20.7 } }
 };
 
 const ProductDetails = () => {

@@ -10,7 +10,6 @@ import { products } from "@/data/products";
 import { Product, CartItem } from "@/types/product";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -104,60 +103,7 @@ const Index = () => {
         onCartOpen={() => setIsCartOpen(true)}
       />
 
-      {/* Hero Carousel Section */}
-      <section className="relative w-full py-4 md:py-6 mx-auto">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {/* Ready to SHIP Panel */}
-              <CarouselItem>
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
-                  <img
-                    src="https://i.ibb.co/tTt88mxh/2.jpg"
-                    alt="Ready to Ship"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight">
-                      Ready to SHIP
-                    </h2>
-                    <Button
-                      className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
-                      onClick={() => navigate("/shop")}
-                    >
-                      SHOP NOW
-                    </Button>
-                  </div>
-                </div>
-              </CarouselItem>
-
-              {/* Ready to CUSTOMISE Panel */}
-              <CarouselItem>
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl group">
-                  <img
-                    src="https://i.ibb.co/Kc7RYj0k/1.jpg"
-                    alt="Ready to Customise"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  <div className="absolute inset-0 flex flex-col items-end justify-center p-8 text-white">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading mb-6 leading-tight text-right">
-                      Ready to CUSTOMISE
-                    </h2>
-                    <Button
-                      className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
-                      onClick={() => navigate("/customizer")}
-                    >
-                      CUSTOMISE NOW
-                    </Button>
-                  </div>
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-          </Carousel>
-        </div>
-      </section>
+      <Hero />
 
 
       <main>

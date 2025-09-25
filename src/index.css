@@ -277,6 +277,18 @@ All colors MUST be HSL.
     animation: fadeIn 0.6s ease-out forwards;
   }
 
+  .animate-slide {
+    animation: slide 3s linear infinite;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 1s ease-out forwards;
+  }
+
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
   }
@@ -431,9 +443,9 @@ All colors MUST be HSL.
 
 @keyframes slide {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(50%);
   }
 }
