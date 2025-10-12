@@ -1,221 +1,122 @@
-import { useState, useEffect } from "react";
-import { ShippingBanner } from "@/components/ShippingBanner";
+import React, { useEffect } from "react";
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { ProductCard } from "@/components/ProductCard";
-import { CartDrawer } from "@/components/CartDrawer";
-import { Newsletter } from "@/components/Newsletter";
-import { Footer } from "@/components/Footer";
-import { products } from "@/data/products";
-import { Product, CartItem } from "@/types/product";
-import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-
-const getTopCategories = (products, count = 6) => {
-  const categoryCounts = products.reduce((acc, p) => {
-    acc[p.category] = (acc[p.category] || 0) + 1;
-    return acc;
-  }, {});
-  return Object.entries(categoryCounts)
-    .sort((a, b) => Number(b[1]) - Number(a[1]))
-    .slice(0, count)
-    .map(([cat]) => cat);
-};
+import comingSoonVideo from "@/assets/coming-soon.mp4";
 
 const Index = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { toast } = useToast();
-  const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const topCategories = getTopCategories(products, 6);
-
-
-  const addToCart = (product: Product) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        toast({
-          title: "Added to cart",
-          description: `${product.name} quantity updated`,
-        });
-        return prevItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        toast({
-          title: "Added to cart",
-          description: `${product.name} has been added to your cart`,
-        });
-        return [...prevItems, { ...product, quantity: 1 }];
-      }
-    });
-  };
-
-  const updateQuantity = (id: number, quantity: number) => {
-    if (quantity === 0) {
-      removeFromCart(id);
-      return;
-    }
-
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
-  };
-
-  const removeFromCart = (id: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-    toast({
-      title: "Removed from cart",
-      description: "Item has been removed from your cart",
-    });
-  };
-
-  const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
-
-
-  const getInitialTimer = () => 24 * 60 * 60; // 24 hours in seconds
-  const [timer, setTimer] = useState(getInitialTimer());
+  // Floating animation for decorative elements
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(interval);
+    const createFloatingElement = () => {
+      const elements = document.querySelectorAll('.floating-element');
+      elements.forEach((element, index) => {
+        const delay = index * 0.5;
+        (element as HTMLElement).style.animationDelay = `${delay}s`;
+      });
+    };
+    createFloatingElement();
   }, []);
-  const hours = Math.floor(timer / 3600);
-  const minutes = Math.floor((timer % 3600) / 60);
-  const seconds = timer % 60;
 
   return (
-    <div className="min-h-screen bg-background">
-      <ShippingBanner />
-      <Header
-        cartItemsCount={totalCartItems}
-        onCartOpen={() => setIsCartOpen(true)}
-      />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-black">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-w-full max-h-full object-contain"
+        >
+          <source src={comingSoonVideo} type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+        </video>
+        {/* Video overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/20"></div>
+      </div>
 
-      <Hero />
+      {/* Floating decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-4 h-4 bg-white/20 rounded-full floating-element animate-float"></div>
+        <div className="absolute top-40 right-20 w-6 h-6 bg-yellow-400/30 rounded-full floating-element animate-float-delayed"></div>
+        <div className="absolute bottom-40 left-20 w-3 h-3 bg-pink-400/40 rounded-full floating-element animate-float-slow"></div>
+        <div className="absolute top-60 right-40 w-5 h-5 bg-blue-400/25 rounded-full floating-element animate-float"></div>
+        <div className="absolute bottom-60 right-10 w-4 h-4 bg-green-400/30 rounded-full floating-element animate-float-delayed"></div>
+        
+        {/* Geometric patterns */}
+        <div className="absolute top-32 left-1/4 w-32 h-32 border border-white/20 rotate-45 floating-element animate-rotate-slow"></div>
+        <div className="absolute bottom-32 right-1/4 w-24 h-24 border border-yellow-400/30 rotate-12 floating-element animate-rotate-reverse"></div>
+      </div>
 
+      <Header />
+      
 
-      <main>
-
-        {/* Featured Products Section */}
-        <section className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl xs:text-3xl md:text-4xl font-heading text-primary mb-2 sm:mb-4">
-              Featured Collection
-            </h2>
-            <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto font-manrope">
-              Discover our carefully curated selection of premium comfort wear,
-              designed for those who value both style and comfort.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-8">
-            {products.slice(0, 3).map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={addToCart}
-              />
-            ))}
-          </div>
-          <div className="flex justify-center">
-            <Button
-              className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
-              onClick={() => navigate("/shop")}
-            >
-              VIEW ALL
-            </Button>
-          </div>
-        </section>
-
-        {/* Categories Section */}
-        <section className="container mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl xs:text-3xl md:text-4xl font-heading text-primary mb-2 sm:mb-4">
-              Shop by Category
-            </h2>
-            <p className="text-base xs:text-lg text-muted-foreground max-w-2xl mx-auto font-manrope">
-              Explore our most popular categories and find your perfect style.
-            </p>
-          </div>
-          {!selectedCategory ? (
-            <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-8">
-                {topCategories.map((category) => {
-                  const firstProduct = products.find(p => p.category === category);
-                  return (
-                    <Card key={category} className="group overflow-hidden transition-all duration-300 hover:shadow-card-hover animate-fade-in cursor-pointer" onClick={() => setSelectedCategory(category)}>
-                      <div className="relative overflow-hidden">
-                        <img
-                          src={firstProduct?.image}
-                          alt={category}
-                          className="w-full h-56 xs:h-64 sm:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/10" />
-                      </div>
-                      <CardHeader className="pb-0">
-                        <CardTitle className="text-lg xs:text-xl text-primary group-hover:text-accent transition-colors font-manrope">
-                          {category.toUpperCase()}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="pt-0">
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-              <div className="flex justify-center">
-              <Button
-              className="bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
-              onClick={() => navigate("/shop")}
-            >
-              SHOW ALL
-            </Button>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <Button className="mb-4 xs:mb-8" variant="outline" onClick={() => setSelectedCategory(null)}>
-                ← Back to Categories
-              </Button>
-              <h2 className="text-lg xs:text-2xl font-bold mb-4 xs:mb-6 text-left">{selectedCategory}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-                {products.filter(p => p.category === selectedCategory).map(product => (
-                  <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
-                ))}
-              </div>
-            </div>
-          )}
-        </section>
-
-        {/* Newsletter Section */}
-        <Newsletter />
-
-        {/* Promotional Banner Section */}
-        <section className="w-full px-2 py-8 xs:px-4 sm:px-6 lg:px-8">
-          <img src="https://i.ibb.co/Xf5MqPk7/banner-img.png" alt="Promotional Banner" className="w-full h-auto object-cover rounded-xl" />
-        </section>
-      </main>
-
-      <Footer />
-
-      <CartDrawer
-        isOpen={isCartOpen}
-        onOpenChange={setIsCartOpen}
-        cartItems={cartItems}
-        onUpdateQuantity={updateQuantity}
-        onRemoveItem={removeFromCart}
-      />
+      {/* Custom CSS for animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(-180deg); }
+        }
+        
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(90deg); }
+        }
+        
+        @keyframes rotate-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes rotate-reverse {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+          animation: float-delayed 8s ease-in-out infinite;
+        }
+        
+        .animate-float-slow {
+          animation: float-slow 10s ease-in-out infinite;
+        }
+        
+        .animate-rotate-slow {
+          animation: rotate-slow 20s linear infinite;
+        }
+        
+        .animate-rotate-reverse {
+          animation: rotate-reverse 15s linear infinite;
+        }
+        
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+        
+        
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 };

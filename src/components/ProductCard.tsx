@@ -7,12 +7,13 @@ import { Heart, Eye, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
 interface ProductCardProps {
-  product: Product;
-  onAddToCart: (product: Product) => void;
-  onAddToWishlist?: (product: Product) => void;
+	product: Product;
+	onAddToCart: (product: Product) => void;
+	onAddToWishlist?: (product: Product) => void;
+	hideAddToCart?: boolean;
 }
 
-export const ProductCard = ({ product, onAddToCart, onAddToWishlist }: ProductCardProps) => {
+export const ProductCard = ({ product, onAddToCart, onAddToWishlist, hideAddToCart = false }: ProductCardProps) => {
   const navigate = useNavigate();
   const [isWishlistHovered, setIsWishlistHovered] = useState(false);
   const [isQuickViewHovered, setIsQuickViewHovered] = useState(false);
@@ -130,15 +131,17 @@ export const ProductCard = ({ product, onAddToCart, onAddToWishlist }: ProductCa
         </p>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0">
-        <Button 
-          onClick={e => { e.stopPropagation(); onAddToCart(product); }}
-          className="w-full h-10 bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
-        >
-          <ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
-          ADD TO CART
-        </Button>
-      </CardFooter>
+		{!hideAddToCart && (
+			<CardFooter className="p-4 pt-0">
+				<Button 
+					onClick={e => { e.stopPropagation(); onAddToCart(product); }}
+					className="w-full h-10 bg-black text-gray-300 font-manrope font-normal px-8 py-6 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:bg-gray-900"
+				>
+					<ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200" />
+					ADD TO CART
+				</Button>
+			</CardFooter>
+		)}
     </Card>
   );
 };
